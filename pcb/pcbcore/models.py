@@ -4,13 +4,22 @@ from django.db import models
 class Manufacturer(models.Model):
     title = models.CharField(max_length=256, unique=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Socket(models.Model):
     title = models.CharField(max_length=256, unique=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Chipset(models.Model):
     title = models.CharField(max_length=256, unique=True)
+
+    def __str__(self):
+        return self.title
 
 
 class CPU(models.Model):
@@ -23,6 +32,9 @@ class CPU(models.Model):
     value = models.IntegerField()
     price = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
 
 class GPU(models.Model):
     title = models.CharField(max_length=256)
@@ -30,6 +42,9 @@ class GPU(models.Model):
     memory = models.IntegerField()
     value = models.IntegerField()
     price = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
 
 class RAM(models.Model):
@@ -40,6 +55,9 @@ class RAM(models.Model):
     value = models.IntegerField()
     price = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
 
 class MotherBoard(models.Model):
     title = models.CharField(max_length=256)
@@ -48,6 +66,9 @@ class MotherBoard(models.Model):
     socket = models.ForeignKey(Socket, on_delete=models.CASCADE)
     value = models.IntegerField()
     price = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
 
 class ROM(models.Model):
@@ -65,6 +86,9 @@ class ROM(models.Model):
     value = models.IntegerField()
     price = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
 
 class PowerSupply(models.Model):
     title = models.CharField(max_length=256)
@@ -72,5 +96,8 @@ class PowerSupply(models.Model):
     power = models.IntegerField()
     value = models.IntegerField()
     price = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
 
