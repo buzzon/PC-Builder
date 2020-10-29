@@ -20,8 +20,8 @@ class Factor(models.Model):
 class Essence(models.Model):
     title = models.CharField(max_length=256)
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
-    next_question = models.OneToOneField('Question', on_delete=models.SET_NULL, null=True, blank=True,
-                                         related_name='next_question')
+    next_question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True, blank=True,
+                                      related_name='next_question')
 
     def __str__(self):
         return self.title
@@ -62,15 +62,25 @@ class Question(models.Model):
             ('RAM_value', 'RAM value'),
             ('RAM_price', 'RAM price'),
         )),
-        ('ROM', (
-            ('ROM_title', 'ROM title'),
-            ('ROM_brand', 'ROM brand'),
-            ('ROM_type', 'ROM type'),
-            ('ROM_read', 'ROM read'),
-            ('ROM_write', 'ROM write'),
-            ('ROM_size', 'ROM size'),
-            ('ROM_value', 'ROM value'),
-            ('ROM_price', 'ROM price'),
+        ('HDD', (
+            ('HDD_title', 'HDD title'),
+            ('HDD_brand', 'HDD brand'),
+            ('HDD_type', 'HDD type'),
+            ('HDD_read', 'HDD read'),
+            ('HDD_write', 'HDD write'),
+            ('HDD_size', 'HDD size'),
+            ('HDD_value', 'HDD value'),
+            ('HDD_price', 'HDD price'),
+        )),
+        ('SSD', (
+            ('SSD_title', 'SSD title'),
+            ('SSD_brand', 'SSD brand'),
+            ('SSD_type', 'SSD type'),
+            ('SSD_read', 'SSD read'),
+            ('SSD_write', 'SSD write'),
+            ('SSD_size', 'SSD size'),
+            ('SSD_value', 'SSD value'),
+            ('SSD_price', 'SSD price'),
         )),
         ('PowerSupply', (
             ('PowerSupply_title', 'PowerSupply title'),
@@ -79,10 +89,14 @@ class Question(models.Model):
             ('PowerSupply_value', 'PowerSupply value'),
             ('PowerSupply_price', 'PowerSupply price'),
         )),
+        ('Other', (
+            ('Other_budget', 'Budget'),
+            ('Other_os', 'OS'),
+        )),
     ]
 
     title = models.CharField(max_length=256)
-    next = models.OneToOneField('Question', on_delete=models.SET_NULL, null=True, blank=True)
+    next = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True, blank=True)
     component = models.CharField(max_length=20, choices=MEDIA_CHOICES, null=True, blank=True)
 
     def __str__(self):

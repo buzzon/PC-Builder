@@ -23,44 +23,44 @@ class Chipset(models.Model):
 
 
 class CPU(models.Model):
-    title = models.CharField(max_length=256)
+    model = models.CharField(max_length=256)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     cores = models.IntegerField()
     threads = models.IntegerField()
     frequency = models.FloatField()
     socket = models.ForeignKey(Socket, on_delete=models.CASCADE)
-    value = models.IntegerField()
+    benchmark = models.IntegerField()
     price = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.model
 
 
 class GPU(models.Model):
-    title = models.CharField(max_length=256)
+    model = models.CharField(max_length=256)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     memory = models.IntegerField()
-    value = models.IntegerField()
+    benchmark = models.IntegerField()
     price = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.model
 
 
 class RAM(models.Model):
-    title = models.CharField(max_length=256)
+    model = models.CharField(max_length=256)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     frequency = models.FloatField()
     size = models.IntegerField()
-    value = models.IntegerField()
+    benchmark = models.IntegerField()
     price = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.model
 
 
 class MotherBoard(models.Model):
-    title = models.CharField(max_length=256)
+    model = models.CharField(max_length=256)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     chipset = models.ForeignKey(Chipset, on_delete=models.CASCADE)
     socket = models.ForeignKey(Socket, on_delete=models.CASCADE)
@@ -68,7 +68,7 @@ class MotherBoard(models.Model):
     price = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.model
 
 
 class ROM(models.Model):
@@ -77,25 +77,25 @@ class ROM(models.Model):
         ('S', 'SSD'),
     )
 
-    title = models.CharField(max_length=256)
+    model = models.CharField(max_length=256)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     type = models.CharField(max_length=1, choices=TYPE, default='H')
     read = models.IntegerField()
     write = models.IntegerField()
     size = models.IntegerField()
-    value = models.IntegerField()
+    benchmark = models.IntegerField()
     price = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.model
 
 
 class PowerSupply(models.Model):
-    title = models.CharField(max_length=256)
+    model = models.CharField(max_length=256)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     power = models.IntegerField()
     value = models.IntegerField()
     price = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.model
