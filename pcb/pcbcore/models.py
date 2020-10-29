@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Manufacturer(models.Model):
+class Brand(models.Model):
     title = models.CharField(max_length=256, unique=True)
 
     def __str__(self):
@@ -24,7 +24,7 @@ class Chipset(models.Model):
 
 class CPU(models.Model):
     title = models.CharField(max_length=256)
-    manufacture = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     cores = models.IntegerField()
     threads = models.IntegerField()
     frequency = models.FloatField()
@@ -38,7 +38,7 @@ class CPU(models.Model):
 
 class GPU(models.Model):
     title = models.CharField(max_length=256)
-    manufacture = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     memory = models.IntegerField()
     value = models.IntegerField()
     price = models.IntegerField()
@@ -49,7 +49,7 @@ class GPU(models.Model):
 
 class RAM(models.Model):
     title = models.CharField(max_length=256)
-    manufacture = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     frequency = models.FloatField()
     size = models.IntegerField()
     value = models.IntegerField()
@@ -61,7 +61,7 @@ class RAM(models.Model):
 
 class MotherBoard(models.Model):
     title = models.CharField(max_length=256)
-    manufacture = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     chipset = models.ForeignKey(Chipset, on_delete=models.CASCADE)
     socket = models.ForeignKey(Socket, on_delete=models.CASCADE)
     value = models.IntegerField()
@@ -78,7 +78,7 @@ class ROM(models.Model):
     )
 
     title = models.CharField(max_length=256)
-    manufacture = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     type = models.CharField(max_length=1, choices=TYPE, default='H')
     read = models.IntegerField()
     write = models.IntegerField()
@@ -92,7 +92,7 @@ class ROM(models.Model):
 
 class PowerSupply(models.Model):
     title = models.CharField(max_length=256)
-    manufacture = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     power = models.IntegerField()
     value = models.IntegerField()
     price = models.IntegerField()

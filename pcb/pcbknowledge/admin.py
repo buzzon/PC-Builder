@@ -15,6 +15,7 @@ class EssenceInline(nested_admin.NestedStackedInline):
     model = Essence
     extra = 0
     inlines = [FactorInline]
+    fk_name = 'question'
 
 
 class QuestionAdmin(nested_admin.NestedModelAdmin):
