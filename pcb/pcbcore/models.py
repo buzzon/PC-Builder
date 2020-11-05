@@ -27,10 +27,10 @@ class CPU(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     cores = models.IntegerField()
     threads = models.IntegerField()
-    frequency = models.FloatField()
     socket = models.ForeignKey(Socket, on_delete=models.CASCADE)
     benchmark = models.IntegerField()
     price = models.IntegerField()
+    url = models.TextField()
 
     def __str__(self):
         return self.model
@@ -42,6 +42,8 @@ class GPU(models.Model):
     memory = models.IntegerField()
     benchmark = models.IntegerField()
     price = models.IntegerField()
+    power = models.IntegerField()
+    url = models.TextField()
 
     def __str__(self):
         return self.model
@@ -50,10 +52,10 @@ class GPU(models.Model):
 class RAM(models.Model):
     model = models.CharField(max_length=256)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    frequency = models.FloatField()
     size = models.IntegerField()
     benchmark = models.IntegerField()
     price = models.IntegerField()
+    url = models.TextField()
 
     def __str__(self):
         return self.model
@@ -66,6 +68,7 @@ class MotherBoard(models.Model):
     socket = models.ForeignKey(Socket, on_delete=models.CASCADE)
     value = models.IntegerField()
     price = models.IntegerField()
+    url = models.TextField()
 
     def __str__(self):
         return self.model
@@ -85,6 +88,7 @@ class ROM(models.Model):
     size = models.IntegerField()
     benchmark = models.IntegerField()
     price = models.IntegerField()
+    url = models.TextField()
 
     def __str__(self):
         return self.model
@@ -96,6 +100,7 @@ class PowerSupply(models.Model):
     power = models.IntegerField()
     value = models.IntegerField()
     price = models.IntegerField()
+    url = models.TextField()
 
     def __str__(self):
         return self.model

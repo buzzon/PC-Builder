@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pcbcore.apps.PCBcoreConfig',
-    'pcbknowledge.apps.PCBknowledgeConfig'
+    'pcbknowledge.apps.PCBknowledgeConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
