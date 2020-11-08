@@ -5,7 +5,6 @@ from rest_framework.authtoken import views as rest_views
 
 from . import views
 
-# Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r'Brand', views.BrandViewSet)
 router.register(r'Socket', views.SocketViewSet)

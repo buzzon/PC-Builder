@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 
 class Brand(models.Model):
@@ -27,7 +28,10 @@ class CPU(models.Model):
     url = models.TextField()
 
     def __str__(self):
-        return self.model
+        return f'{self.brand} {self.model}'
+
+    def get_url(self):
+        return format_html(f'<a href="{self.url}">{self.url}</a>')
 
 
 class GPU(models.Model):
@@ -39,7 +43,10 @@ class GPU(models.Model):
     url = models.TextField()
 
     def __str__(self):
-        return self.model
+        return f'{self.brand} {self.model}'
+
+    def get_url(self):
+        return format_html(f'<a href="{self.url}">{self.url}</a>')
 
 
 class MemoryType(models.Model):
@@ -54,13 +61,17 @@ class RAM(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     type = models.ForeignKey(MemoryType, on_delete=models.CASCADE)
     frequency = models.IntegerField()
-    capacity = models.CharField(max_length=16)
+    capacity = models.IntegerField()
+    count = models.IntegerField()
     benchmark = models.FloatField()
     price = models.IntegerField()
     url = models.TextField()
 
     def __str__(self):
-        return self.model
+        return f'{self.brand} {self.model}'
+
+    def get_url(self):
+        return format_html(f'<a href="{self.url}">{self.url}</a>')
 
 
 class Formfactor(models.Model):
@@ -90,6 +101,9 @@ class MotherBoard(models.Model):
     def __str__(self):
         return self.model
 
+    def get_url(self):
+        return format_html(f'<a href="{self.url}">{self.url}</a>')
+
 
 class ROM(models.Model):
     TYPE = (
@@ -110,6 +124,9 @@ class ROM(models.Model):
     def __str__(self):
         return self.model
 
+    def get_url(self):
+        return format_html(f'<a href="{self.url}">{self.url}</a>')
+
 
 class PowerSupply(models.Model):
     model = models.CharField(max_length=128)
@@ -121,3 +138,6 @@ class PowerSupply(models.Model):
 
     def __str__(self):
         return self.model
+
+    def get_url(self):
+        return format_html(f'<a href="{self.url}">{self.url}</a>')
