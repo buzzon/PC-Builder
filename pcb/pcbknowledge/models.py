@@ -11,7 +11,7 @@ class Component(models.Model):
 class Factor(models.Model):
     component = models.ForeignKey(Component, on_delete=models.CASCADE)
     coefficient = models.IntegerField()
-    essence = models.ForeignKey('Essence', on_delete=models.CASCADE)
+    essence = models.ForeignKey('Essence', related_name='factors', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'[{self.coefficient}] {self.component}'
@@ -19,7 +19,7 @@ class Factor(models.Model):
 
 class Essence(models.Model):
     title = models.CharField(max_length=256)
-    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    question = models.ForeignKey('Question', related_name='essences', on_delete=models.CASCADE)
     next_question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True, blank=True,
                                       related_name='next_question')
 
@@ -30,24 +30,24 @@ class Essence(models.Model):
 class Question(models.Model):
     MEDIA_CHOICES = [
         ('CPU', (
-            ('CPU_title', 'CPU title'),
+            ('CPU_model', 'CPU model'),
             ('CPU_brand', 'CPU brand'),
             ('CPU_cores', 'CPU cores'),
             ('CPU_threads', 'CPU threads'),
             ('CPU_frequency', 'CPU frequency'),
             ('CPU_socket', 'CPU socket'),
-            ('CPU_value', 'CPU value'),
+            ('CPU_benchmark', 'CPU benchmark'),
             ('CPU_price', 'CPU price'),
         )),
         ('GPU', (
-            ('GPU_title', 'GPU title'),
+            ('GPU_model', 'GPU model'),
             ('GPU_brand', 'GPU brand'),
             ('GPU_memory', 'GPU memory'),
-            ('GPU_value', 'GPU value'),
+            ('GPU_benchmark', 'GPU benchmark'),
             ('GPU_price', 'GPU price'),
         )),
         ('MotherBoard', (
-            ('MotherBoard_title', 'MotherBoard title'),
+            ('MotherBoard_model', 'MotherBoard model'),
             ('MotherBoard_brand', 'MotherBoard brand'),
             ('MotherBoard_chipset', 'MotherBoard chipset'),
             ('MotherBoard_socket', 'MotherBoard socket'),
@@ -55,35 +55,32 @@ class Question(models.Model):
             ('MotherBoard_price', 'MotherBoard price'),
         )),
         ('RAM', (
-            ('RAM_title', 'RAM title'),
+            ('RAM_model', 'RAM model'),
             ('RAM_brand', 'RAM brand'),
-            ('RAM_frequency', 'RAM frequency'),
             ('RAM_size', 'RAM size'),
-            ('RAM_value', 'RAM value'),
+            ('RAM_benchmark', 'RAM benchmark'),
             ('RAM_price', 'RAM price'),
         )),
         ('HDD', (
-            ('HDD_title', 'HDD title'),
+            ('HDD_model', 'HDD model'),
             ('HDD_brand', 'HDD brand'),
-            ('HDD_type', 'HDD type'),
             ('HDD_read', 'HDD read'),
             ('HDD_write', 'HDD write'),
             ('HDD_size', 'HDD size'),
-            ('HDD_value', 'HDD value'),
+            ('HDD_benchmark', 'HDD benchmark'),
             ('HDD_price', 'HDD price'),
         )),
         ('SSD', (
-            ('SSD_title', 'SSD title'),
+            ('SSD_model', 'SSD model'),
             ('SSD_brand', 'SSD brand'),
-            ('SSD_type', 'SSD type'),
             ('SSD_read', 'SSD read'),
             ('SSD_write', 'SSD write'),
             ('SSD_size', 'SSD size'),
-            ('SSD_value', 'SSD value'),
+            ('SSD_benchmark', 'SSD benchmark'),
             ('SSD_price', 'SSD price'),
         )),
         ('PowerSupply', (
-            ('PowerSupply_title', 'PowerSupply title'),
+            ('PowerSupply_model', 'PowerSupply model'),
             ('PowerSupply_brand', 'PowerSupply brand'),
             ('PowerSupply_power', 'PowerSupply power'),
             ('PowerSupply_value', 'PowerSupply value'),

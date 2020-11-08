@@ -1,5 +1,7 @@
 from django.contrib import admin
 import nested_admin
+from django.contrib.admin import AdminSite
+
 from .models import *
 
 admin.site.register(Component)
@@ -24,3 +26,12 @@ class QuestionAdmin(nested_admin.NestedModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 
+
+class ExpertAdminSite(AdminSite):
+    site_header = 'Expert Page'
+    site_title = 'Expert Page'
+    index_title = 'Created by .DCP'
+
+
+expert = ExpertAdminSite(name='expert')
+expert.register(Question, QuestionAdmin)

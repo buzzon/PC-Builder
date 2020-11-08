@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from pcbknowledge.admin import expert
+
 urlpatterns = [
-    path('', include('pcbcore.api.urls')),
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
+    path(r'', include('pcbknowledge.urls')),
+    path(r'api/core/', include('pcbcore.api.urls')),
+    path(r'api/knowledge/', include('pcbknowledge.api.urls')),
+    path(r'admin/', admin.site.urls),
+    path(r'expert/', expert.urls),
+    path(r'api-auth/', include('rest_framework.urls')),
 ]
