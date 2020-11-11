@@ -1,7 +1,6 @@
-from contextvars import Token
-
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
 from pcbcore.models import *
 
@@ -78,9 +77,15 @@ class MotherBoardSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ROMSerializer(serializers.ModelSerializer):
+class SSDSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ROM
+        model = SSD
+        fields = '__all__'
+
+
+class HDDSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HDD
         fields = '__all__'
 
 

@@ -106,6 +106,7 @@ class Build(models.Model):
     gpu = models.ForeignKey(GPU, on_delete=models.SET_NULL, null=True)
     motherboard = models.ForeignKey(MotherBoard, on_delete=models.SET_NULL, null=True)
     ram = models.ManyToManyField(RAM)
-    rom = models.ManyToManyField(ROM)
+    ssd = models.ManyToManyField(SSD)
+    hdd = models.ManyToManyField(HDD)
     powersupply = models.ForeignKey(PowerSupply, on_delete=models.SET_NULL, null=True)
     price = models.IntegerField()

@@ -17,7 +17,7 @@ class Socket(models.Model):
 
 
 class CPU(models.Model):
-    model = models.CharField(max_length=128)
+    model = models.CharField(max_length=128, unique=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     cores = models.IntegerField()
     threads = models.IntegerField()
@@ -33,9 +33,13 @@ class CPU(models.Model):
     def get_url(self):
         return format_html(f'<a href="{self.url}">{self.url}</a>')
 
+    class Meta:
+        verbose_name = 'CPU'
+        verbose_name_plural = 'SPUs'
+
 
 class GPU(models.Model):
-    model = models.CharField(max_length=128)
+    model = models.CharField(max_length=128, unique=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     memory = models.IntegerField()
     benchmark = models.FloatField()
@@ -48,9 +52,13 @@ class GPU(models.Model):
     def get_url(self):
         return format_html(f'<a href="{self.url}">{self.url}</a>')
 
+    class Meta:
+        verbose_name = 'GPU'
+        verbose_name_plural = 'GPUs'
+
 
 class MemoryType(models.Model):
-    title = models.CharField(max_length=16)
+    title = models.CharField(max_length=16, unique=True)
 
     def __str__(self):
         return self.title
@@ -73,9 +81,13 @@ class RAM(models.Model):
     def get_url(self):
         return format_html(f'<a href="{self.url}">{self.url}</a>')
 
+    class Meta:
+        verbose_name = 'RAM'
+        verbose_name_plural = 'RAMs'
+
 
 class Formfactor(models.Model):
-    title = models.CharField(max_length=64)
+    title = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.title
@@ -89,7 +101,7 @@ class Chipset(models.Model):
 
 
 class MotherBoard(models.Model):
-    model = models.CharField(max_length=128)
+    model = models.CharField(max_length=128, unique=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     formfactor = models.ForeignKey(Formfactor, on_delete=models.CASCADE)
     chipset = models.ForeignKey(Chipset, on_delete=models.CASCADE)
@@ -99,33 +111,50 @@ class MotherBoard(models.Model):
     url = models.TextField()
 
     def __str__(self):
-        return self.model
+        return f'{self.brand} {self.model}'
 
     def get_url(self):
         return format_html(f'<a href="{self.url}">{self.url}</a>')
 
 
-class ROM(models.Model):
-    TYPE = (
-        ('H', 'HDD'),
-        ('S', 'SSD'),
-    )
-
-    model = models.CharField(max_length=128)
+class SSD(models.Model):
+    model = models.CharField(max_length=128, unique=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    type = models.CharField(max_length=1, choices=TYPE, default='H')
-    read = models.IntegerField()
-    write = models.IntegerField()
-    size = models.IntegerField()
     benchmark = models.FloatField()
     price = models.IntegerField()
+    formfactor = models.ForeignKey(Formfactor, on_delete=models.CASCADE)
+    capacity = models.IntegerField()
     url = models.TextField()
 
     def __str__(self):
-        return self.model
+        return f'{self.brand} {self.model}'
 
     def get_url(self):
         return format_html(f'<a href="{self.url}">{self.url}</a>')
+
+    class Meta:
+        verbose_name = 'SSD'
+        verbose_name_plural = 'SSDs'
+
+
+class HDD(models.Model):
+    model = models.CharField(max_length=128, unique=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    benchmark = models.FloatField()
+    price = models.IntegerField()
+    formfactor = models.ForeignKey(Formfactor, on_delete=models.CASCADE)
+    capacity = models.IntegerField()
+    url = models.TextField()
+
+    def __str__(self):
+        return f'{self.brand} {self.model}'
+
+    def get_url(self):
+        return format_html(f'<a href="{self.url}">{self.url}</a>')
+
+    class Meta:
+        verbose_name = 'HDD'
+        verbose_name_plural = 'HDDs'
 
 
 class PowerSupply(models.Model):
@@ -137,7 +166,7 @@ class PowerSupply(models.Model):
     url = models.TextField()
 
     def __str__(self):
-        return self.model
+        return f'{self.brand} {self.model}'
 
     def get_url(self):
         return format_html(f'<a href="{self.url}">{self.url}</a>')

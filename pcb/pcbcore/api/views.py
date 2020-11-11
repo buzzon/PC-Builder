@@ -74,9 +74,16 @@ class MotherBoardViewSet(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
 
 
-class ROMViewSet(viewsets.ModelViewSet):
-    queryset = ROM.objects.all()
-    serializer_class = ROMSerializer
+class SSDViewSet(viewsets.ModelViewSet):
+    queryset = SSD.objects.all()
+    serializer_class = SSDSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+
+
+class HDDViewSet(viewsets.ModelViewSet):
+    queryset = HDD.objects.all()
+    serializer_class = HDDSerializer
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
 

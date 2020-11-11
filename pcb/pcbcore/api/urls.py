@@ -15,7 +15,8 @@ router.register(r'RAM', views.RAMViewSet)
 router.register(r'Formfactor', views.FormfactorViewSet)
 router.register(r'Chipset', views.ChipsetViewSet)
 router.register(r'MotherBoard', views.MotherBoardViewSet)
-router.register(r'ROM', views.ROMViewSet)
+router.register(r'HDD', views.HDDViewSet)
+router.register(r'SSD', views.SSDViewSet)
 router.register(r'PowerSupply', views.PowerSupplyViewSet)
 
 app_name = 'pcbcore'
