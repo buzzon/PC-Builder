@@ -2,7 +2,7 @@ from pcbcore.models import *
 
 
 class Component(models.Model):
-    title = models.CharField(max_length=256)
+    title = models.CharField(max_length=32)
 
     def __str__(self):
         return self.title
@@ -34,9 +34,9 @@ class Question(models.Model):
             ('CPU_brand', 'CPU brand'),
             ('CPU_cores', 'CPU cores'),
             ('CPU_threads', 'CPU threads'),
-            ('CPU_frequency', 'CPU frequency'),
             ('CPU_socket', 'CPU socket'),
             ('CPU_benchmark', 'CPU benchmark'),
+            ('CPU_frequency', 'CPU frequency'),
             ('CPU_price', 'CPU price'),
         )),
         ('GPU', (
@@ -49,34 +49,36 @@ class Question(models.Model):
         ('MotherBoard', (
             ('MotherBoard_model', 'MotherBoard model'),
             ('MotherBoard_brand', 'MotherBoard brand'),
+            ('MotherBoard_formfactor', 'MotherBoard formfactor'),
             ('MotherBoard_chipset', 'MotherBoard chipset'),
             ('MotherBoard_socket', 'MotherBoard socket'),
-            ('MotherBoard_value', 'MotherBoard value'),
+            ('MotherBoard_year', 'MotherBoard year'),
             ('MotherBoard_price', 'MotherBoard price'),
         )),
         ('RAM', (
             ('RAM_model', 'RAM model'),
             ('RAM_brand', 'RAM brand'),
-            ('RAM_size', 'RAM size'),
+            ('RAM_type', 'RAM type'),
+            ('RAM_frequency', 'RAM frequency'),
+            ('RAM_capacity', 'RAM capacity'),
+            ('RAM_count', 'RAM count'),
             ('RAM_benchmark', 'RAM benchmark'),
             ('RAM_price', 'RAM price'),
         )),
         ('HDD', (
             ('HDD_model', 'HDD model'),
             ('HDD_brand', 'HDD brand'),
-            ('HDD_read', 'HDD read'),
-            ('HDD_write', 'HDD write'),
-            ('HDD_size', 'HDD size'),
             ('HDD_benchmark', 'HDD benchmark'),
+            ('HDD_formfactor', 'HDD formfactor'),
+            ('HDD_capacity', 'HDD capacity'),
             ('HDD_price', 'HDD price'),
         )),
         ('SSD', (
             ('SSD_model', 'SSD model'),
             ('SSD_brand', 'SSD brand'),
-            ('SSD_read', 'SSD read'),
-            ('SSD_write', 'SSD write'),
-            ('SSD_size', 'SSD size'),
             ('SSD_benchmark', 'SSD benchmark'),
+            ('SSD_formfactor', 'SSD formfactor'),
+            ('SSD_capacity', 'SSD capacity'),
             ('SSD_price', 'SSD price'),
         )),
         ('PowerSupply', (
@@ -92,9 +94,9 @@ class Question(models.Model):
         )),
     ]
 
-    title = models.CharField(max_length=256)
+    title = models.TextField()
     next = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True, blank=True)
-    component = models.CharField(max_length=20, choices=MEDIA_CHOICES, null=True, blank=True)
+    component = models.CharField(max_length=32, choices=MEDIA_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return self.title
