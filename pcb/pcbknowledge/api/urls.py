@@ -10,5 +10,4 @@ router.register(r'Questions', views.QuestionViewSet)
 app_name = 'pcbknowledge-api'
 urlpatterns = [
     url('', include(router.urls)),
-    url('clear_question', views.clear_question, name='clear_question')
 ]

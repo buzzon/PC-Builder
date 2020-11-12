@@ -35,7 +35,7 @@ class CPU(models.Model):
 
     class Meta:
         verbose_name = 'CPU'
-        verbose_name_plural = 'SPUs'
+        verbose_name_plural = 'CPUs'
 
 
 class GPU(models.Model):

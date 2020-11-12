@@ -19,7 +19,7 @@ router.register(r'HDD', views.HDDViewSet)
 router.register(r'SSD', views.SSDViewSet)
 router.register(r'PowerSupply', views.PowerSupplyViewSet)
 
-app_name = 'pcbcore'
+app_name = 'pcbcore-api'
 urlpatterns = [
     url('', include(router.urls)),
     url(r'userRegistration/$', views.UserCreate.as_view(), name="user-registration"),
