@@ -1,4 +1,3 @@
-from django.db.models import Min
 from django.shortcuts import render
 
 from pcbcore.models import *
@@ -30,15 +29,21 @@ def index(request):
 
 
 def questions(request):
+    next = None
+    previous = None
+
     if Question.objects.count() > 0:
-        question = Question.objects.filter().values_list('title')
+        question = Question.objects.all()
+        next = question[-1].next
         # question = Question.objects.filter().values_list('title').annotate(Min('id')).order_by('id')[0][0]
     else:
-        question = "База знаний ещё не заполнена :с"
+        question = "The knowledge base is not yet full :c"
     return render(
         request,
         'question.html',
         context={
-            'question': question
+            'question': question,
+            'previous': previous,
+            'next': next
         }
     )

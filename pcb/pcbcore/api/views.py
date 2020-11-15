@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import viewsets, permissions, generics
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
@@ -17,12 +18,22 @@ class BrandViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
 
+    def create(self, request, **kwargs):
+        obj, created = Brand.objects.get_or_create(title=request.data.get("title"))
+        serializer = BrandSerializer(obj)
+        return JsonResponse(serializer.data)
+
 
 class SocketViewSet(viewsets.ModelViewSet):
     queryset = Socket.objects.all()
     serializer_class = SocketSerializer
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
+
+    def create(self, request, **kwargs):
+        obj, created = Socket.objects.get_or_create(title=request.data.get("title"))
+        serializer = SocketSerializer(obj)
+        return JsonResponse(serializer.data)
 
 
 class CPUViewSet(viewsets.ModelViewSet):
@@ -45,6 +56,11 @@ class MemoryTypeViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
 
+    def create(self, request, **kwargs):
+        obj, created = MemoryType.objects.get_or_create(title=request.data.get("title"))
+        serializer = MemoryTypeSerializer(obj)
+        return JsonResponse(serializer.data)
+
 
 class RAMViewSet(viewsets.ModelViewSet):
     queryset = RAM.objects.all()
@@ -59,12 +75,22 @@ class FormfactorViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
 
+    def create(self, request, **kwargs):
+        obj, created = Formfactor.objects.get_or_create(title=request.data.get("title"))
+        serializer = FormfactorSerializer(obj)
+        return JsonResponse(serializer.data)
+
 
 class ChipsetViewSet(viewsets.ModelViewSet):
     queryset = Chipset.objects.all()
     serializer_class = ChipsetSerializer
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [SessionAuthentication, TokenAuthentication]
+
+    def create(self, request, **kwargs):
+        obj, created = Chipset.objects.get_or_create(title=request.data.get("title"))
+        serializer = ChipsetSerializer(obj)
+        return JsonResponse(serializer.data)
 
 
 class MotherBoardViewSet(viewsets.ModelViewSet):

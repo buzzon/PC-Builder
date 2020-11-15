@@ -1,20 +1,30 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Welcome to PCBuilder!</h1>
-<p>Tiny expert system :з</p>
-<h2>Our database contains many components:</h2>
-<ul>
-    <li><strong>CPU count:</strong> {{ cpu_count }}</li>
-    <li><strong>GPU count:</strong> {{ gpu_count }}</li>
-    <li><strong>RAM count:</strong> {{ ram_count }}</li>
-    <li><strong>SSD count:</strong> {{ ssd_count }}</li>
-    <li><strong>HDD count:</strong> {{ hdd_count }}</li>
-    <li><strong>MotherBoard count:</strong> {{ mother_board_count }}</li>
-    <li><strong>Power Supply count:</strong> {{ power_supply_count }}</li>
-</ul>
-<br>
-<form action="{% url 'pcbknowledge:questions' %}" method="get">
-    <button class="btn btn-success">Let's go build pc</button>
-</form>
+<div class="jumbotron">
+   <h1>Welcome to PCBuilder!</h1>
+    <p>Tiny expert system :з</p>
+    <hr class="my-4">
+    <h2>Our database contains many components:</h2>
+    <ul>
+        <li><strong>CPU count:</strong> {{ cpu_count }}</li>
+        <li><strong>GPU count:</strong> {{ gpu_count }}</li>
+        <li><strong>RAM count:</strong> {{ ram_count }}</li>
+        <li><strong>SSD count:</strong> {{ ssd_count }}</li>
+        <li><strong>HDD count:</strong> {{ hdd_count }}</li>
+        <li><strong>MotherBoard count:</strong> {{ mother_board_count }}</li>
+        <li><strong>Power Supply count:</strong> {{ power_supply_count }}</li>
+    </ul>
+    <br>
+    <form action="{% url 'pcbknowledge:questions' %}" method="get">
+        <div class="form-group">
+            <div class="form-check">
+                <input required type="checkbox" class="form-check-input" id="confirm_processing">
+                <label class="form-check-label" for="confirm_processing">I confirm the processing of data</label>
+            </div>
+            <button class="btn btn-success btn-lg">Let's go build pc</button>
+        </div>
+    </form>
+</div>
+
 {% endblock %}

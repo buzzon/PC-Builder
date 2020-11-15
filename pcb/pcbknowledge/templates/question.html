@@ -1,7 +1,25 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h2>Building a dream computer!</h2>
-<p>{{ question }}</p>
+<div class="jumbotron">
+    <h2 class="display-4">{{ question }}</h2>
+    <hr class="my-4">
+    <p class="lead"></p>
+    <p class="lead">
+        {% if previous %}
+            <button type="button" class="btn btn-secondary btn-lg">Previous</button>
+        {% endif %}
+        {% if next %}
+            <button type="button" class="btn btn-success btn-lg pull-right">Next</button>
+        {% endif %}
+        {% if essences %}
+        <div class="btn-group btn-secondary" data-toggle="buttons">
+            <button type="button" class="btn btn-primary">Previous</button>
+            <button type="button" class="btn btn-primary">Previous</button>
+            <button type="button" class="btn btn-primary">Previous</button>
+        </div>
+        {% endif %}
+    </p>
+</div>
 
 {% endblock %}

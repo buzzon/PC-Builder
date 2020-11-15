@@ -24,4 +24,5 @@ urlpatterns = [
     url('', include(router.urls)),
     url(r'userRegistration/$', views.UserCreate.as_view(), name="user-registration"),
     url(r'getToken/$', rest_views.obtain_auth_token, name="get-token"),
+
 ]

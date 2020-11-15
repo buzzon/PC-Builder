@@ -19,19 +19,23 @@
             <div class="col-sm-2">
                 {% block sidebar %}
                 <ul class="sidebar-nav">
-                    <li><a href="{% url 'pcbknowledge:index' %}">Home</a></li>
+                    <li class="nav-item">
+                        <a href="{% url 'pcbknowledge:index' %}">Home</a>
+                    </li>
                     <br>
-                    <li><a href="api/core/">API Core</a></li>
-                    <li><a href="api/knowledge/">API Knowledge</a></li>
+                    <li><a href="/api/core/">API Core</a></li>
+                    <li><a href="/api/knowledge/">API Knowledge</a></li>
                     <li><a href="{% url 'pcbcore-api:user-registration' %}">User Registration</a></li>
                     <br>
-                    <li><a href="admin/">Admin UI</a></li>
-                    <li><a href="expert/">Expert UI</a></li>
+                    <li><a href="/admin/">Admin UI</a></li>
+                    <li><a href="/expert/">Expert UI</a></li>
                 </ul>
                 {% endblock %}
             </div>
             <div class="col-sm-10">
-                {% block content %}{% endblock %}
+                <br>
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
     </div>

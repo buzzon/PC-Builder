@@ -3,6 +3,7 @@ from django.utils.html import format_html
 
 
 class Brand(models.Model):
+    objects = None
     title = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
@@ -158,15 +159,10 @@ class HDD(models.Model):
 
 
 class PowerSupply(models.Model):
-    model = models.CharField(max_length=128)
+    model = models.CharField(max_length=128, null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     power = models.IntegerField()
-    value = models.IntegerField()
     price = models.IntegerField()
-    url = models.TextField()
 
     def __str__(self):
         return f'{self.brand} {self.model}'
-
-    def get_url(self):
-        return format_html(f'<a href="{self.url}">{self.url}</a>')

@@ -37,7 +37,7 @@ class ROMBoardAdmin(admin.ModelAdmin):
 
 
 class PowerSupplyBoardAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'price', 'get_url')
+    list_display = ('__str__', 'power', 'price')
     list_filter = ['brand']
     search_fields = ['model']
 
