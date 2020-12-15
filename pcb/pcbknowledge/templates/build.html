@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-8">
+        <div class="jumbotron">
+            <h2 class="display-4">Build</h2>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="jumbotron">
+            <h2 class="display-4">Response history</h2>
+            <hr class="my-4">
+                {% for key, value in history.items %}
+                <div class="card my-3">
+                    <div class="card-body py-1">
+                        <h5 class="card-title pt-2">{{key}} | {{value.0}}</h5>
+                        {% for key, value  in value.1.items %}
+                        <p class="blockquote-footer my-0">{{key}} : {{value}} </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

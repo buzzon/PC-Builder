@@ -4,5 +4,5 @@ from . import views
 app_name = 'pcbknowledge'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('questions/', views.questions, name='questions')
+    path('questions', views.questions, name='questions')
 ]

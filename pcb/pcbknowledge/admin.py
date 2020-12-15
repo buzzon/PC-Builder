@@ -4,7 +4,7 @@ from django.contrib.admin import AdminSite
 
 from .models import *
 
-admin.site.register(Component)
+admin.site.register(ComponentVariable)
 admin.site.register(Build)
 
 
@@ -23,6 +23,11 @@ class EssenceInline(nested_admin.NestedStackedInline):
 class QuestionAdmin(nested_admin.NestedModelAdmin):
     inlines = [EssenceInline]
 
+    def save_model(self, request, obj, form, change):
+        if obj.is_first and Question.objects.count() > 1:
+            Question.objects.update(is_first=False)
+        super(QuestionAdmin, self).save_model(request, obj, form, change)
+
 
 admin.site.register(Question, QuestionAdmin)
 
@@ -35,3 +40,4 @@ class ExpertAdminSite(AdminSite):
 
 expert = ExpertAdminSite(name='expert')
 expert.register(Question, QuestionAdmin)
+expert.register(ComponentVariable)

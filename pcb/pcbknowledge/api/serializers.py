@@ -22,7 +22,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['id', 'title', 'component', 'next', 'essences']
+        fields = ['id', 'title', 'description', 'next', 'component_variable', 'essences']
 
     def create(self, validated_data):
         essences_data = validated_data.pop('essences')
