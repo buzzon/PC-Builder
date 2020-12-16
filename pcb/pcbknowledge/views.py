@@ -31,13 +31,13 @@ def index(request):
 
 
 def questions(request):
-    cpu = "CPU.objects.filter(price__lte=int(budget) * factors['CPU']).order_by('benchmark')[0]"
-    gpu = "GPU.objects.filter(price__lte=int(budget) * factors['GPU']).order_by('benchmark')[0]"
-    ram = "RAM.objects.filter(price__lte=int(budget) * factors['RAM']).order_by('benchmark')[0]"
-    mb = "MotherBoard.objects.filter(price__lte=int(budget) * factors['MB']).order_by('year')[0]"
-    ssd = "SSD.objects.filter(price__lte=int(budget) * factors['SSD']).order_by('benchmark')[0]"
-    hdd = "HDD.objects.filter(price__lte=int(budget) * factors['HDD']).order_by('benchmark')[0]"
-    ps = "PowerSupply.objects.filter(price__lte=int(budget) * factors['PS']).order_by('power')[0]"
+    cpu = None
+    gpu = None
+    ram = None
+    mb = None
+    ssd = None
+    hdd = None
+    ps = None
 
     template = 'question.html'
     history = {}
@@ -114,13 +114,13 @@ def questions(request):
 
             normalize(factors)
 
-            cpu = next(iter(CPU.objects.filter(price__lte=int(budget) * factors['CPU']).order_by('-benchmark')), None)
-            gpu = next(iter(GPU.objects.filter(price__lte=int(budget) * factors['GPU']).order_by('-benchmark')), None)
-            ram = next(iter(RAM.objects.filter(price__lte=int(budget) * factors['RAM']).order_by('-benchmark')), None)
-            mb = next(iter(MotherBoard.objects.filter(price__lte=int(budget) * factors['MB']).order_by('-year')), None)
-            ssd = next(iter(SSD.objects.filter(price__lte=int(budget) * factors['SSD']).order_by('-benchmark')), None)
-            hdd = next(iter(HDD.objects.filter(price__lte=int(budget) * factors['HDD']).order_by('-benchmark')), None)
-            ps = next(iter(PowerSupply.objects.filter(price__lte=int(budget) * factors['PS']).order_by('-power')), None)
+            cpu = get_by_budget_or_minimal(CPU, int(budget) * factors['CPU'], '-benchmark')
+            gpu = get_by_budget_or_minimal(GPU, int(budget) * factors['GPU'], '-benchmark')
+            ram = get_by_budget_or_minimal(RAM, int(budget) * factors['RAM'], '-benchmark')
+            mb = get_by_budget_or_minimal(MotherBoard, int(budget) * factors['MB'], '-year')
+            ssd = get_by_budget_or_minimal(SSD, int(budget) * factors['SSD'], '-benchmark')
+            hdd = get_by_budget_or_minimal(HDD, int(budget) * factors['HDD'], '-benchmark')
+            ps = get_by_budget_or_minimal(PowerSupply, int(budget) * factors['PS'], '-power')
 
             if cpu is not None:
                 price += cpu.price
