@@ -4,6 +4,44 @@
     <div class="col-8">
         <div class="jumbotron">
             <h2 class="display-4">Build</h2>
+            {% if cpu %}
+                <div>
+                    CPU : <a href={{cpu.url}}> {{cpu}}, benchmark:{{cpu.benchmark}}, cores:{{cpu.cores}}, threads:{{cpu.threads}}, socket:{{cpu.socket}}, frequency:{{cpu.frequency}}, price:{{cpu.price}} </a>
+                </div>
+            {% endif %}
+            {% if gpu %}
+                <div>
+                    GPU : <a href={{gpu.url}}> {{gpu}}, benchmark:{{gpu.benchmark}}, memory:{{gpu.memory}}, price:{{gpu.price}} </a>
+                </div>
+            {% endif %}
+            {% if ram %}
+                <div>
+                    RAM : <a href={{ram.url}}> {{ram}}, benchmark:{{ram.benchmark}}, type:{{ram.type}}, frequency:{{ram.frequency}}, count:{{ram.count}}, capacity:{{ram.capacity}}, price:{{ram.price}} </a>
+                </div>
+            {% endif %}
+            {% if mb %}
+                <div>
+                    MotherBoard : <a href={{mb.url}}> {{mb}}, formfactor:{{mb.formfactor}}, chipset:{{mb.chipset}}, socket:{{mb.socket}}, year:{{mb.year}}, price:{{mb.price}} </a>
+                </div>
+            {% endif %}
+            {% if ssd %}
+                <div>
+                    SSD : <a href={{ssd.url}}> {{ssd}}, benchmark:{{ssd.benchmark}}, formfactor:{{ssd.formfactor}}, capacity:{{ssd.capacity}}, price:{{ssd.price}} </a>
+                </div>
+            {% endif %}
+            {% if hdd %}
+                <div>
+                    HDD : <a href={{hdd.url}}> {{hdd}}, benchmark:{{hdd.benchmark}}, formfactor:{{hdd.formfactor}}, capacity:{{hdd.capacity}}, price:{{hdd.price}} </a>
+                </div>
+            {% endif %}
+            {% if ps %}
+                <div>
+                    PowerSupply : {{ps}}, power:{{ps.power}}, price:{{ps.price}}
+                </div>
+            {% endif %}
+            <div>
+                Total price: {{price}}
+            </div>
         </div>
     </div>
     <div class="col-4">
