@@ -34,6 +34,23 @@
         <div class="jumbotron">
             <h1>PC builds</h1>
             <hr class="my-4">
+            {% for item in builds %}
+            <div class="card my-3">
+                <div class="card-body py-1">
+                    <h5 class="card-title pt-2">{{item.title}}</h5>
+                    <p class="my-0">cpu: {{item.cpu}}</p>
+                    <p class="my-0">gpu: {{item.gpu}}</p>
+                    <p class="my-0">motherboard: {{item.motherboard}}</p>
+                    <p class="my-0">ram: {{item.ram}}</p>
+                    <p class="my-0">ssd: {{item.ssd}}</p>
+                    <p class="my-0">hdd: {{item.hdd}}</p>
+                    <p class="my-0">powersupply: {{item.powersupply}}</p>
+                    <p class="my-0">price: {{item.price}}</p>
+                    <p class="my-0">benchmark: {{item.benchmark}}</p>
+                    <p class="my-0">os: {{item.os}}</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

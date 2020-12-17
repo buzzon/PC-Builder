@@ -4,44 +4,103 @@
     <div class="col-8">
         <div class="jumbotron">
             <h2 class="display-4">Build</h2>
-            {% if cpu %}
-                <div>
-                    CPU : <a href={{cpu.url}}> {{cpu}}, benchmark:{{cpu.benchmark}}, cores:{{cpu.cores}}, threads:{{cpu.threads}}, socket:{{cpu.socket}}, frequency:{{cpu.frequency}}, price:{{cpu.price}} </a>
-                </div>
+            {% if build.cpu %}
+            <div>
+                CPU : <a href={{build.cpu.url}}> {{build.cpu}}, benchmark:{{build.cpu.benchmark}}, cores:{{build.cpu.cores}},
+                    threads:{{build.cpu.threads}}, socket:{{build.cpu.socket}}, frequency:{{build.cpu.frequency}}, price:{{build.cpu.price}} </a>
+            </div>
             {% endif %}
-            {% if gpu %}
-                <div>
-                    GPU : <a href={{gpu.url}}> {{gpu}}, benchmark:{{gpu.benchmark}}, memory:{{gpu.memory}}, price:{{gpu.price}} </a>
-                </div>
+            {% if build.gpu %}
+            <div>
+                GPU : <a href={{build.gpu.url}}> {{build.gpu}}, benchmark:{{build.gpu.benchmark}}, memory:{{build.gpu.memory}},
+                    price:{{build.gpu.price}} </a>
+            </div>
             {% endif %}
-            {% if ram %}
-                <div>
-                    RAM : <a href={{ram.url}}> {{ram}}, benchmark:{{ram.benchmark}}, type:{{ram.type}}, frequency:{{ram.frequency}}, count:{{ram.count}}, capacity:{{ram.capacity}}, price:{{ram.price}} </a>
-                </div>
+            {% if build.ram %}
+            <div>
+                RAM : <a href={{build.ram.url}}> {{build.ram}}, benchmark:{{build.ram.benchmark}}, type:{{build.ram.type}},
+                    frequency:{{build.ram.frequency}}, count:{{build.ram.count}}, capacity:{{build.ram.capacity}}, price:{{build.ram.price}} </a>
+            </div>
             {% endif %}
-            {% if mb %}
-                <div>
-                    MotherBoard : <a href={{mb.url}}> {{mb}}, formfactor:{{mb.formfactor}}, chipset:{{mb.chipset}}, socket:{{mb.socket}}, year:{{mb.year}}, price:{{mb.price}} </a>
-                </div>
+            {% if build.motherboard %}
+            <div>
+                MotherBoard : <a href={{build.motherboard.url}}> {{build.motherboard}}, formfactor:{{build.motherboard.formfactor}},
+                    chipset:{{build.motherboard.chipset}}, socket:{{build.motherboard.socket}}, year:{{build.motherboard.year}},
+                    price:{{build.motherboard.price}} </a>
+            </div>
             {% endif %}
-            {% if ssd %}
-                <div>
-                    SSD : <a href={{ssd.url}}> {{ssd}}, benchmark:{{ssd.benchmark}}, formfactor:{{ssd.formfactor}}, capacity:{{ssd.capacity}}, price:{{ssd.price}} </a>
-                </div>
+            {% if build.ssd %}
+            <div>
+                SSD : <a href={{build.ssd.url}}> {{build.ssd}}, benchmark:{{build.ssd.benchmark}}, formfactor:{{build.ssd.formfactor}},
+                    capacity:{{build.ssd.capacity}}, price:{{build.ssd.price}} </a>
+            </div>
             {% endif %}
-            {% if hdd %}
-                <div>
-                    HDD : <a href={{hdd.url}}> {{hdd}}, benchmark:{{hdd.benchmark}}, formfactor:{{hdd.formfactor}}, capacity:{{hdd.capacity}}, price:{{hdd.price}} </a>
-                </div>
+            {% if build.hdd %}
+            <div>
+                HDD : <a href={{build.hdd.url}}> {{build.hdd}}, benchmark:{{build.hdd.benchmark}}, formfactor:{{build.hdd.formfactor}},
+                    capacity:{{build.hdd.capacity}}, price:{{build.hdd.price}} </a>
+            </div>
             {% endif %}
-            {% if ps %}
-                <div>
-                    PowerSupply : {{ps}}, power:{{ps.power}}, price:{{ps.price}}
-                </div>
+            {% if build.powersupply %}
+            <div>
+                PowerSupply : {{build.powersupply}}, power:{{build.powersupply.power}}, price:{{build.powersupply.price}}
+            </div>
             {% endif %}
             <div class="mt-3">
-                <h5>Total price: {{price}}</h5>
-                <h5>Total benchmark: {{benchmark}}</h5>
+                <h5>Total price: {{build.price}}</h5>
+                <h5>Total benchmark: {{build.benchmark}}</h5>
+            </div>
+        </div>
+            <div class="mt-3">
+                <h5>Difference: {{difference }}</h5>
+            </div>
+        <div class="jumbotron">
+            <h2 class="display-4">Build 2</h2>
+            {% if build_other.cpu %}
+            <div>
+                CPU : <a href={{build_other.cpu.url}}> {{build_other.cpu}}, benchmark:{{build_other.cpu.benchmark}}, cores:{{build_other.cpu.cores}},
+                    threads:{{build_other.cpu.threads}}, socket:{{build_other.cpu.socket}}, frequency:{{build_other.cpu.frequency}}, price:{{build_other.cpu.price}} </a>
+            </div>
+            {% endif %}
+            {% if build_other.gpu %}
+            <div>
+                GPU : <a href={{build_other.gpu.url}}> {{build_other.gpu}}, benchmark:{{build_other.gpu.benchmark}}, memory:{{build_other.gpu.memory}},
+                    price:{{build_other.gpu.price}} </a>
+            </div>
+            {% endif %}
+            {% if build_other.ram %}
+            <div>
+                RAM : <a href={{build_other.ram.url}}> {{build_other.ram}}, benchmark:{{build_other.ram.benchmark}}, type:{{build_other.ram.type}},
+                    frequency:{{build_other.ram.frequency}}, count:{{build_other.ram.count}}, capacity:{{build_other.ram.capacity}}, price:{{build_other.ram.price}} </a>
+            </div>
+            {% endif %}
+            {% if build_other.motherboard %}
+            <div>
+                MotherBoard : <a href={{build_other.motherboard.url}}> {{build_other.motherboard}}, formfactor:{{build_other.motherboard.formfactor}},
+                    chipset:{{build_other.motherboard.chipset}}, socket:{{build_other.motherboard.socket}}, year:{{build_other.motherboard.year}},
+                    price:{{build_other.motherboard.price}} </a>
+            </div>
+            {% endif %}
+            {% if build_other.ssd %}
+            <div>
+                SSD : <a href={{build_other.ssd.url}}> {{build_other.ssd}}, benchmark:{{build_other.ssd.benchmark}}, formfactor:{{build_other.ssd.formfactor}},
+                    capacity:{{build_other.ssd.capacity}}, price:{{build_other.ssd.price}} </a>
+            </div>
+            {% endif %}
+            {% if build_other.hdd %}
+            <div>
+                HDD : <a href={{build_other.hdd.url}}> {{build_other.hdd}}, benchmark:{{build_other.hdd.benchmark}}, formfactor:{{build_other.hdd.formfactor}},
+                    capacity:{{build_other.hdd.capacity}}, price:{{build_other.hdd.price}} </a>
+            </div>
+            {% endif %}
+            {% if build_other.powersupply %}
+            <div>
+                PowerSupply : {{build_other.powersupply}}, power:{{build_other.powersupply.power}}, price:{{build_other.powersupply.price}}
+            </div>
+            {% endif %}
+            <div class="mt-3">
+                <h5>Total price: {{build_other.price}}</h5>
+                <h5>Total benchmark: {{build_other.benchmark}}</h5>
             </div>
         </div>
     </div>
@@ -49,16 +108,16 @@
         <div class="jumbotron">
             <h2 class="display-4">Response history</h2>
             <hr class="my-4">
-                {% for key, value in history.items %}
-                <div class="card my-3">
-                    <div class="card-body py-1">
-                        <h5 class="card-title pt-2">{{key}} | {{value.0}}</h5>
-                        {% for key, value  in value.1.items %}
-                        <p class="blockquote-footer my-0">{{key}} : {{value}} </p>
-                        {% endfor %}
-                    </div>
+            {% for key, value in history.items %}
+            <div class="card my-3">
+                <div class="card-body py-1">
+                    <h5 class="card-title pt-2">{{key}} | {{value.0}}</h5>
+                    {% for key, value in value.1.items %}
+                    <p class="blockquote-footer my-0">{{key}} : {{value}} </p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

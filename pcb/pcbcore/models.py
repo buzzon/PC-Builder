@@ -18,8 +18,6 @@ class Socket(models.Model):
 
 
 def get_by_budget_or_minimal(self, budget, order):
-    if budget == 0.0:
-        return None
     part = next(iter(self.objects.filter(price__lte=budget).order_by(order)), None)
     if part is None:
         part = next(iter(self.objects.order_by('price')), None)
@@ -41,6 +39,12 @@ class Part(models.Model):
 
     def get_url(self):
         return format_html(f'<a href="{self.url}">{self.url}</a>')
+
+    def get_price(self):
+        return (self.price, 0)[self.price is None]
+
+    def get_benchmark(self):
+        return (self.benchmark, 0)[self.benchmark is None]
 
 
 class CPU(Part):

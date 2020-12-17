@@ -127,8 +127,91 @@ class Build(models.Model):
     cpu = models.ForeignKey(CPU, on_delete=models.SET_NULL, null=True)
     gpu = models.ForeignKey(GPU, on_delete=models.SET_NULL, null=True)
     motherboard = models.ForeignKey(MotherBoard, on_delete=models.SET_NULL, null=True)
-    ram = models.ManyToManyField(RAM)
-    ssd = models.ManyToManyField(SSD)
-    hdd = models.ManyToManyField(HDD)
+    ram = models.ForeignKey(RAM, on_delete=models.SET_NULL, null=True)
+    ssd = models.ForeignKey(SSD, on_delete=models.SET_NULL, null=True)
+    hdd = models.ForeignKey(HDD, on_delete=models.SET_NULL, null=True)
     powersupply = models.ForeignKey(PowerSupply, on_delete=models.SET_NULL, null=True)
-    price = models.IntegerField()
+    price = models.IntegerField(default=0)
+    benchmark = models.FloatField(default=0)
+    os = models.BooleanField(default=False)
+    factors = {
+        'CPU': 0,
+        'GPU': 0,
+        'RAM': 0,
+        'MB': 0,
+        'SSD': 0,
+        'HDD': 0,
+        'PS': 0
+    }
+    part = []
+
+    def recalculate_price(self):
+        self.price = 0
+        for item in self.part:
+            self.price += item.get_price()
+
+    def recalculate_benchmark(self):
+        self.benchmark = 0
+        for item in self.part:
+            self.benchmark += item.get_benchmark()
+        self.benchmark = round(self.benchmark, 1)
+
+    def recalculate_part(self):
+        self.part.clear()
+        if self.cpu is not None:
+            self.part.append(self.cpu)
+        if self.gpu is not None:
+            self.part.append(self.gpu)
+        if self.motherboard is not None:
+            self.part.append(self.motherboard)
+        if self.powersupply is not None:
+            self.part.append(self.powersupply)
+        if self.ram is not None:
+            self.part.append(self.ram)
+        if self.ssd is not None:
+            self.part.append(self.ssd)
+        if self.hdd is not None:
+            self.part.append(self.hdd)
+
+    def build(self, budget, func):
+        normalize(self.factors)
+
+        self.factors = {key: val for key, val in self.factors.items() if val != 0.0}
+
+        while len(self.factors) > 0:
+            minimal_factor = func(self.factors, key=self.factors.get)
+            if minimal_factor == 'CPU':
+                self.cpu = get_by_budget_or_minimal(CPU, budget * self.factors['CPU'], '-benchmark')
+                budget -= self.cpu.price
+            if minimal_factor == 'GPU':
+                self.gpu = get_by_budget_or_minimal(GPU, budget * self.factors['GPU'], '-benchmark')
+                budget -= self.gpu.price
+            if minimal_factor == 'RAM':
+                self.ram = get_by_budget_or_minimal(RAM, budget * self.factors['RAM'], '-benchmark')
+                budget -= self.ram.price
+            if minimal_factor == 'SSD':
+                self.ssd = get_by_budget_or_minimal(SSD, budget * self.factors['SSD'], '-benchmark')
+                budget -= self.ssd.price
+            if minimal_factor == 'HDD':
+                self.hdd = get_by_budget_or_minimal(HDD, budget * self.factors['HDD'], '-benchmark')
+                budget -= self.hdd.price
+            if minimal_factor == 'MB':
+                self.motherboard = get_by_budget_or_minimal(MotherBoard, budget * self.factors['MB'], '-year')
+                budget -= self.motherboard.price
+            if minimal_factor == 'PS':
+                self.powersupply = get_by_budget_or_minimal(PowerSupply, budget * self.factors['PS'], '-power')
+                budget -= self.powersupply.price
+            self.factors.pop(minimal_factor)
+            normalize(self.factors)
+
+        self.recalculate_part()
+        self.recalculate_price()
+        self.recalculate_benchmark()
+
+
+def normalize(d):
+    if sum(d.values()) == 0:
+        return
+    factor = 1.0 / sum(d.values())
+    for k in d:
+        d[k] = d[k] * factor
