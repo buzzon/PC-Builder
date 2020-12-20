@@ -180,9 +180,20 @@ class Build(models.Model):
 
         while len(self.factors) > 0:
             minimal_factor = func(self.factors, key=self.factors.get)
-            if minimal_factor == 'CPU':
+            if minimal_factor == 'CPU' or minimal_factor == 'MB':
                 self.cpu = get_by_budget_or_minimal(CPU, budget * self.factors['CPU'], '-benchmark')
                 budget -= self.cpu.price
+                normalize(self.factors)
+
+                self.motherboard = next(iter(MotherBoard.objects.filter(socket=self.cpu.socket).
+                                             filter(price__lte=budget * self.factors['MB'])), None)
+                if self.motherboard is None:
+                    self.motherboard = next(iter(MotherBoard.objects.filter(socket=self.cpu.socket).order_by('price')),
+                                            None)
+                budget -= self.motherboard.price
+
+                self.factors.pop('CPU', None)
+                self.factors.pop('MB', None)
             if minimal_factor == 'GPU':
                 self.gpu = get_by_budget_or_minimal(GPU, budget * self.factors['GPU'], '-benchmark')
                 budget -= self.gpu.price
@@ -195,13 +206,10 @@ class Build(models.Model):
             if minimal_factor == 'HDD':
                 self.hdd = get_by_budget_or_minimal(HDD, budget * self.factors['HDD'], '-benchmark')
                 budget -= self.hdd.price
-            if minimal_factor == 'MB':
-                self.motherboard = get_by_budget_or_minimal(MotherBoard, budget * self.factors['MB'], '-year')
-                budget -= self.motherboard.price
             if minimal_factor == 'PS':
                 self.powersupply = get_by_budget_or_minimal(PowerSupply, budget * self.factors['PS'], '-power')
                 budget -= self.powersupply.price
-            self.factors.pop(minimal_factor)
+            self.factors.pop(minimal_factor, None)
             normalize(self.factors)
 
         self.recalculate_part()
