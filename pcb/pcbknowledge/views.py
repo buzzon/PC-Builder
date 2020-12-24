@@ -13,7 +13,10 @@ def index(request):
     ssd_count = SSD.objects.count()
     hdd_count = HDD.objects.count()
     power_supply_count = PowerSupply.objects.count()
-    first_question_id = Question.objects.filter(is_first=True)[0].id
+    if Question.objects.count() > 0:
+        first_question_id = Question.objects.filter(is_first=True)[0].id
+    else:
+        first_question_id = ''
     builds = Build.objects.all().order_by('-title')
 
     return render(
