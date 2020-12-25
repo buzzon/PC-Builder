@@ -1,0 +1,57 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-8">
+        <div class="jumbotron">
+            <h1>Welcome to PCBuilder!</h1>
+            <p>Tiny expert system :з</p>
+            <hr class="my-4">
+            <h2>Our database contains many components:</h2>
+            <ul>
+                <li><strong>CPU count:</strong> {{ cpu_count }}</li>
+                <li><strong>GPU count:</strong> {{ gpu_count }}</li>
+                <li><strong>RAM count:</strong> {{ ram_count }}</li>
+                <li><strong>SSD count:</strong> {{ ssd_count }}</li>
+                <li><strong>HDD count:</strong> {{ hdd_count }}</li>
+                <li><strong>MotherBoard count:</strong> {{ mother_board_count }}</li>
+                <li><strong>Power Supply count:</strong> {{ power_supply_count }}</li>
+            </ul>
+            <br>
+            <form action="{% url 'pcbknowledge:questions' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="form-check">
+                        <input required type="checkbox" class="form-check-input" id="confirm_processing">
+                        <input type="hidden" name="question_id_next"  value="{{ first_question_id }}">
+                        <label class="form-check-label" for="confirm_processing">I confirm the processing of data</label>
+                    </div>
+                    <button class="btn btn-success btn-lg" name="start">Let's go build pc</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="jumbotron">
+            <h1>PC builds</h1>
+            <hr class="my-4">
+            {% for item in builds %}
+            <div class="card my-3">
+                <div class="card-body py-1">
+                    <h5 class="card-title pt-2">{{item.title}}</h5>
+                    <p class="my-0">cpu: {{item.cpu}}</p>
+                    <p class="my-0">gpu: {{item.gpu}}</p>
+                    <p class="my-0">motherboard: {{item.motherboard}}</p>
+                    <p class="my-0">ram: {{item.ram}}</p>
+                    <p class="my-0">ssd: {{item.ssd}}</p>
+                    <p class="my-0">hdd: {{item.hdd}}</p>
+                    <p class="my-0">powersupply: {{item.powersupply}}</p>
+                    <p class="my-0">price: {{item.price}}</p>
+                    <p class="my-0">benchmark: {{item.benchmark}}</p>
+                    <p class="my-0">os: {{item.os}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
