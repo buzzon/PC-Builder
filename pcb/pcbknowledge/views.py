@@ -40,6 +40,15 @@ def questions(request):
     build = Build()
     build_other = Build()
     difference = {}
+    essencefactors = {
+        'CPU': 0,
+        'GPU': 0,
+        'RAM': 0,
+        'MB': 0,
+        'SSD': 0,
+        'HDD': 0,
+        'PS': 0
+    }
 
     template = 'question.html'
     history = {}
@@ -84,10 +93,10 @@ def questions(request):
             if component is not None and component_is_id:
                 factors_format = {}
                 essence = Essence.objects.filter(pk=component)[0]
-                build.factors = list(essence.factors.all())
+                essencefactors = list(essence.factors.all())
                 component = essence.title
 
-                for factor in build.factors:
+                for factor in essencefactors:
                     factors_format[factor.component] = factor.coefficient
 
             history[old_question.title] = [component, factors_format]
@@ -96,12 +105,15 @@ def questions(request):
             for item in history.items():
                 if isinstance(item[1][1], dict):
                     for factor_item in item[1][1].items():
-                        build.factors[factor_item[0]] = build.factors[factor_item[0]] + factor_item[1]
+                        build.factors[factor_item[0]] = essencefactors[factor_item[0]] + factor_item[1]
                 else:
                     if item[1][1] == 'Other_budget':
                         budget = item[1][0]
                     elif item[1][1] == 'Other_os':
                         build.os = bool(item[1][0])
+                    else:
+                        arr = item[1][1].split("_")
+                        build.filter[arr[0]] = [arr[1], item[1][0]]
 
             build.title = datetime.now()
             build_other.title = datetime.now()

@@ -24,9 +24,16 @@ def get_by_budget_or_minimal(self, budget, order):
     return part
 
 
+def get_by_budget_or_minimal_NO(objects, budget, order):
+    part = next(iter(objects.filter(price__lte=budget).order_by(order)), None)
+    if part is None:
+        part = next(iter(objects.order_by('price')), None)
+    return part
+
+
 class Part(models.Model):
-    model = models.CharField(max_length=128, default="None")
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, default="None")
+    model = models.CharField(max_length=128, blank=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     benchmark = models.FloatField()
     price = models.IntegerField()
     url = models.TextField()

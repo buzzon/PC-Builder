@@ -143,6 +143,7 @@ class Build(models.Model):
         'HDD': 0,
         'PS': 0
     }
+    filter = {}
     part = []
 
     def recalculate_price(self):
@@ -201,10 +202,26 @@ class Build(models.Model):
                 self.ram = get_by_budget_or_minimal(RAM, budget * self.factors['RAM'], '-benchmark')
                 budget -= self.ram.price
             if minimal_factor == 'SSD':
-                self.ssd = get_by_budget_or_minimal(SSD, budget * self.factors['SSD'], '-benchmark')
+
+                objects = HDD.objects.all()
+                my_filter = {}
+                if 'SSD' in self.filter:
+                    my_filter[self.filter['SSD'][0] + '__gte'] = self.filter['SSD'][1]
+
+                objects = objects.filter(**my_filter)
+
+                self.ssd = get_by_budget_or_minimal_NO(objects, budget * self.factors['SSD'], '-benchmark')
                 budget -= self.ssd.price
             if minimal_factor == 'HDD':
-                self.hdd = get_by_budget_or_minimal(HDD, budget * self.factors['HDD'], '-benchmark')
+
+                objects = HDD.objects.all()
+                my_filter = {}
+                if 'HDD' in self.filter:
+                    my_filter[self.filter['HDD'][0] + '__gte'] = self.filter['HDD'][1]
+
+                objects = objects.filter(**my_filter)
+
+                self.hdd = get_by_budget_or_minimal_NO(objects, budget * self.factors['HDD'], '-benchmark')
                 budget -= self.hdd.price
             if minimal_factor == 'PS':
                 self.powersupply = get_by_budget_or_minimal(PowerSupply, budget * self.factors['PS'], '-power')
