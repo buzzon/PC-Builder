@@ -31,6 +31,21 @@ def get_by_budget_or_minimal_NO(objects, budget, order):
     return part
 
 
+def get_by_filter_or_minimal(self, filters, budget, order, component, condition):
+    objects = self.objects.all()
+    my_filter = {}
+    if component in filters:
+        for item in filters[component]:
+            my_filter[item[0] + condition] = int(item[1])
+
+    objects = objects.filter(**my_filter)
+
+    part = next(iter(objects.filter(price__lte=budget).order_by(order)), None)
+    if part is None:
+        part = next(iter(objects.order_by('price')), None)
+    return part
+
+
 class Part(models.Model):
     model = models.CharField(max_length=128, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)

@@ -196,32 +196,20 @@ class Build(models.Model):
                 self.factors.pop('CPU', None)
                 self.factors.pop('MB', None)
             if minimal_factor == 'GPU':
-                self.gpu = get_by_budget_or_minimal(GPU, budget * self.factors['GPU'], '-benchmark')
+                self.gpu = get_by_filter_or_minimal(GPU, self.filter, budget * self.factors['GPU'], '-benchmark',
+                                                    'GPU', '__gte')
                 budget -= self.gpu.price
             if minimal_factor == 'RAM':
-                self.ram = get_by_budget_or_minimal(RAM, budget * self.factors['RAM'], '-benchmark')
+                self.ram = get_by_filter_or_minimal(RAM, self.filter, budget * self.factors['RAM'], '-benchmark',
+                                                    'RAM', '__gte')
                 budget -= self.ram.price
             if minimal_factor == 'SSD':
-
-                objects = HDD.objects.all()
-                my_filter = {}
-                if 'SSD' in self.filter:
-                    my_filter[self.filter['SSD'][0] + '__gte'] = self.filter['SSD'][1]
-
-                objects = objects.filter(**my_filter)
-
-                self.ssd = get_by_budget_or_minimal_NO(objects, budget * self.factors['SSD'], '-benchmark')
+                self.ssd = get_by_filter_or_minimal(SSD, self.filter, budget * self.factors['SSD'], '-benchmark',
+                                                    'SSD', '__gte')
                 budget -= self.ssd.price
             if minimal_factor == 'HDD':
-
-                objects = HDD.objects.all()
-                my_filter = {}
-                if 'HDD' in self.filter:
-                    my_filter[self.filter['HDD'][0] + '__gte'] = self.filter['HDD'][1]
-
-                objects = objects.filter(**my_filter)
-
-                self.hdd = get_by_budget_or_minimal_NO(objects, budget * self.factors['HDD'], '-benchmark')
+                self.hdd = get_by_filter_or_minimal(HDD, self.filter, budget * self.factors['HDD'], '-benchmark',
+                                                    'HDD', '__gte')
                 budget -= self.hdd.price
             if minimal_factor == 'PS':
                 self.powersupply = get_by_budget_or_minimal(PowerSupply, budget * self.factors['PS'], '-power')

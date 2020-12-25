@@ -111,9 +111,11 @@ def questions(request):
                         budget = item[1][0]
                     elif item[1][1] == 'Other_os':
                         build.os = bool(item[1][0])
+                        if build.os:
+                            budget = int(budget) - 5000
                     else:
                         arr = item[1][1].split("_")
-                        build.filter[arr[0]] = [arr[1], item[1][0]]
+                        build.filter.setdefault(arr[0], []).append([arr[1], item[1][0]])
 
             build.title = datetime.now()
             build_other.title = datetime.now()
