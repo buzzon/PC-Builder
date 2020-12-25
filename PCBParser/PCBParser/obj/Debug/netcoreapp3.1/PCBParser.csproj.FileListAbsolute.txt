@@ -1,0 +1,48 @@
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.exe
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.deps.json
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.runtimeconfig.json
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.runtimeconfig.dev.json
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.dll
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.pdb
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csprojAssemblyReference.cache
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.AssemblyInfoInputs.cache
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.AssemblyInfo.cs
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.dll
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.pdb
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.genruntimeconfig.cache
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\ExcelDataReader.dll
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csproj.CopyComplete
+E:\C#\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\ExcelDataReader.DataSet.dll
+E:\C#\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csproj.CoreCompileInputs.cache
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.exe
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.deps.json
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.runtimeconfig.json
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.runtimeconfig.dev.json
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.dll
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.pdb
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\ExcelDataReader.dll
+F:\PCBParser\PCBParser\bin\Debug\netcoreapp3.1\ExcelDataReader.DataSet.dll
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csprojAssemblyReference.cache
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.AssemblyInfoInputs.cache
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.AssemblyInfo.cs
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csproj.CoreCompileInputs.cache
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csproj.CopyComplete
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.dll
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.pdb
+F:\PCBParser\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.genruntimeconfig.cache
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csprojAssemblyReference.cache
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.AssemblyInfoInputs.cache
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.AssemblyInfo.cs
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csproj.CoreCompileInputs.cache
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.dll
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.pdb
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.exe
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.deps.json
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.runtimeconfig.json
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.runtimeconfig.dev.json
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.dll
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\PCBParser.pdb
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\ExcelDataReader.dll
+E:\C#\PCBParser 2.0\PCBParser\bin\Debug\netcoreapp3.1\ExcelDataReader.DataSet.dll
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.csproj.CopyComplete
+E:\C#\PCBParser 2.0\PCBParser\obj\Debug\netcoreapp3.1\PCBParser.genruntimeconfig.cache

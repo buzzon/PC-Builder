@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "4QiQyD9Sy4clwLQlGDrDh7D5mW88yT1arYyVNTH53w7BJ9O2i3fC3MoMw0Zgus13ISd58+enY4ZjPH7F2fR0/g==",
+  "success": true,
+  "projectFilePath": "E:\\C#\\PCBParser 2.0\\PCBParser\\PCBParser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sergey\\.nuget\\packages\\exceldatareader\\3.6.0\\exceldatareader.3.6.0.nupkg.sha512",
+    "C:\\Users\\Sergey\\.nuget\\packages\\exceldatareader.dataset\\3.6.0\\exceldatareader.dataset.3.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

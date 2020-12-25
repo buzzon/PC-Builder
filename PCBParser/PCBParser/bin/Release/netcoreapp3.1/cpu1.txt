@@ -1,0 +1,18 @@
+Brand	Model	Benchmark	Price	Socket	Cores	Threads	Frequency
+Intel	Core i9-10900K	103	50590.00	LGA 1200	10	20	3.7 ГГц
+Intel	Core i7-10700K	98.8	35590.00	LGA 1200	8	16	3.8 ГГц
+Intel	Core i9-9900K	98.5	40590.00	LGA 1151v2	8	16	3.6 ГГц
+Intel	Core i7-10700	96.2	35590.00	LGA 1200	8	16	3.8 ГГц
+Intel	Core i5-9600KF	95.3	17190.00	LGA 1151v2	6	6	3.7 ГГц
+Intel	Core i7-9700F	94.1	27990.00	LGA 1151v2	8	8	3 ГГц
+Intel	Core i9-10940X	89.1	72990.00	LGA 2066	14	28	3.3 ГГц
+AMD	Ryzen 9 3950X	88.7	72990.00	SocketAM4	16	32	3.5 ГГц
+Intel	Core i9-10900X	87.8	56990.00	LGA 2066	10	20	3.7 ГГц
+Intel	Core i5-9400	87	12790.00	LGA 1151v2	6	6	2.9 ГГц
+Intel	Core i3-10100	85.9	10390.00	LGA 1200	4	8	3.6 ГГц
+AMD	Ryzen 5 3600	84.7	18990.00	SocketAM4	6	12	3.6 ГГц
+AMD	Ryzen 7 2700X	82.6	17990.00	SocketAM4	8	16	3.7 ГГц
+AMD	Ryzen 5 3400G	73.3	13490.00	SocketAM4	4	8	3.7 ГГц
+Intel	Pentium Gold G5600	69.9	7590.00	LGA 1151v2	2	4	3.9 ГГц
+AMD	Ryzen 3 2200G	68.8	7790.00	SocketAM4	4	4	3.5 ГГц
+AMD	Athlon 3000G	59	0.00	SocketAM4	2	4	3.5 ГГц
