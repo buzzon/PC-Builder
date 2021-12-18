@@ -108,7 +108,7 @@ def questions(request):
                         build.factors[factor_item[0]] = essencefactors[factor_item[0]] + factor_item[1]
                 else:
                     if item[1][1] == 'Other_budget':
-                        budget = item[1][0]
+                        budget = int(item[1][0] or 0)
                     elif item[1][1] == 'Other_os':
                         build.os = bool(item[1][0])
                         if build.os:
@@ -120,7 +120,7 @@ def questions(request):
             build.title = datetime.now()
             build_other.title = datetime.now()
             build_other.factors = build.factors
-            build.build(int(budget), min)
+            build.build(budget, min)
             build_other.build(int(budget) + int(budget)*0.1, max)
             difference['price'] = build_other.price - build.price
             difference['benchmark'] = round(build_other.benchmark - build.benchmark, 1)

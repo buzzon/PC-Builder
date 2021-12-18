@@ -36,13 +36,13 @@ def get_by_filter_or_minimal(self, filters, budget, order, component, condition)
     my_filter = {}
     if component in filters:
         for item in filters[component]:
-            my_filter[item[0] + condition] = int(item[1])
+            my_filter[item[0] + condition] = int(item[1] or 0)
 
     objects = objects.filter(**my_filter)
 
     part = next(iter(objects.filter(price__lte=budget).order_by(order)), None)
     if part is None:
-        part = next(iter(objects.order_by('price')), None)
+        part = next(iter(self.objects.all().order_by('price')), None)
     return part
 
 

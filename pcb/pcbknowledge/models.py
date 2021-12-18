@@ -198,19 +198,19 @@ class Build(models.Model):
             if minimal_factor == 'GPU':
                 self.gpu = get_by_filter_or_minimal(GPU, self.filter, budget * self.factors['GPU'], '-benchmark',
                                                     'GPU', '__gte')
-                budget -= self.gpu.price
+                budget -= self.gpu.price or 0
             if minimal_factor == 'RAM':
                 self.ram = get_by_filter_or_minimal(RAM, self.filter, budget * self.factors['RAM'], '-benchmark',
                                                     'RAM', '__gte')
-                budget -= self.ram.price
+                budget -= self.ram.price or 0
             if minimal_factor == 'SSD':
                 self.ssd = get_by_filter_or_minimal(SSD, self.filter, budget * self.factors['SSD'], '-benchmark',
                                                     'SSD', '__gte')
-                budget -= self.ssd.price
+                budget -= self.ssd.price or 0
             if minimal_factor == 'HDD':
                 self.hdd = get_by_filter_or_minimal(HDD, self.filter, budget * self.factors['HDD'], '-benchmark',
                                                     'HDD', '__gte')
-                budget -= self.hdd.price
+                budget -= self.hdd.price or 0
             if minimal_factor == 'PS':
                 self.powersupply = get_by_budget_or_minimal(PowerSupply, budget * self.factors['PS'], '-power')
                 budget -= self.powersupply.price
